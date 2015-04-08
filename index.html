@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="./bootstrap-notify.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script>
+      var socket = io();
+        
+        //List of users
+         users=[
+             {name:'ABC',emailid:'abc@gmail.com'},
+             {name:'PQR',emailid:'pqr@yahoo.com'}];
+        
+     
+       
+        
+        
+        //Form submit event
+      $('form').submit(function(){
+        socket.emit('chat message', {message:$('#m').val(),emailid:'abc@gmail.com'});
+        $('#m').val('');
+        return false;
+      });
+        
+        
+        
+        
+        
+        //*server resposne
+      socket.on('chat message', function(data){
+//        $('#messages').append($('<li>').text(msg));
+
+      
+          
+          //*Biz logic
+         users.forEach(function(u){
+               
+               if(u.emailid==data.emailid)
+          {
+            
+            console.log("Hello "+u.name+" your message is "+data.message);
+              
+               $.notify({
+	// options
+                title: u.name,
+                message: data.message 
+                },{
+	// settings
+              
+    placement: {
+		from: "top",
+		align: "right"
+	},          
+    allow_dismiss: true,
+    z_index: 1031,
+    icon_type: 'class',
+    mouse_over: null,
+    timer: 1000,
+    offset: 20,
+	spacing: 10,
+    animate: {
+		enter: 'animated fadeInDown',
+        exit: 'animated fadeOutUp' 
+	},
+	type: 'info',
+    delay: 5000,
+              
+              
+              
+    template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+		'<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+		'<span data-notify="icon"></span> ' +
+		'<span data-notify="title">{1}</span> ' +
+		'<span data-notify="message">{2}</span>' +
+		'<div class="progress" data-notify="progressbar">' +
+			'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		'</div>' +
+		'<a href="{3}" target="{4}" data-notify="url"></a>' +
+	'</div>' 
+});
+              
+              
+
+          }
+           
+           });
+          
+      });
+          
+         
+    </script>
+  </body>
+</html>
