@@ -26,9 +26,7 @@
       var socket = io();
         
         //List of users
-         users=[
-             {name:'ABC',emailid:'abc@gmail.com'},
-             {name:'PQR',emailid:'pqr@yahoo.com'}];
+         
         
      
        
@@ -36,7 +34,8 @@
         
         //Form submit event
       $('form').submit(function(){
-        socket.emit('chat message', {message:$('#m').val(),emailid:'abc@gmail.com'});
+          console.log("in submit");
+        socket.emit('Req', {message:$('#m').val(),emailid:'abc@gmail.com'});
         $('#m').val('');
         return false;
       });
@@ -46,22 +45,17 @@
         
         
         //*server resposne
-      socket.on('chat message', function(data){
+      socket.on('Resp', function(data){
 //        $('#messages').append($('<li>').text(msg));
 
       
           
           //*Biz logic
-         users.forEach(function(u){
-               
-               if(u.emailid==data.emailid)
-          {
-            
-            console.log("Hello "+u.name+" your message is "+data.message);
+         
               
                $.notify({
 	// options
-                title: u.name,
+                title: data.name,
                 message: data.message 
                 },{
 	// settings
@@ -98,13 +92,9 @@
 	'</div>' 
 });
               
-              
-
-          }
-           
-           });
+});
           
-      });
+      
           
          
     </script>
