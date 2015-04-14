@@ -13,6 +13,7 @@
             .verticalLine {
                 border-right: thin dotted black;
             }
+            
         </style>
     </head>
     <body>
@@ -35,24 +36,27 @@
             <hr/>
             <br/>
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Client Domain Link">
+            <input type="text" name="c_domain" class="form-control" placeholder="Client Domain Link">
         </div><br/>
 
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Campaign Name">
+            <input type="text" name="c_name" class="form-control" placeholder="Campaign Name">
             
             </div><br/>
             
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Campaign Message">
+                <input type="text" name="c_message" class="form-control" placeholder="Campaign Message">
             </div><br/>
         
         <div class="input-group">
-            <input type="number" class="form-control" placeholder="Campaign display time">
+            <input type="number" name="c_dtime" class="form-control" placeholder="Campaign display time">
             </div><br/>
         
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Campaign contact emailid">
+            <input type="text" name="c_contact" class="form-control" placeholder="Campaign contact Email Id">
+            </div><br/>
+      <div class="input-group">
+            <input type="checkbox" name="c_active" class="form-control" placeholder="Activate">
             </div><br/>
       
         
@@ -62,12 +66,20 @@
 
         
         </form>
-        <center>
-        <div class="col-md-5">
-            <form class="col-md-3" > 
-                <input type="text" class="form-control" placeholder="Campaign Message">
+        <div style="padding-left:35%;" >
+        <form class=" form-inline form-group"  > 
+               <div class="input-group col-md-5">
+                <input type="text" class="form-control " placeholder="You can search here...">
+                                </div>
                                 <input type="submit" class="form-control btn btn-primary" placeholder="Search" value="Search" >
+           
             </form>
+        </div>
+        <center>
+        
+            
+        
+            <div class="col-md-5">
             <table class="table table-striped table-bordered table-hover table-condensed" >
                 <thead><th>Campaign Name</th><th>Campaign Message</th><th>Campaign Contact</th><th>Campaign Display Time</th>
                     <th>Client Domain</th>

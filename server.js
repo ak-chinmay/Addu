@@ -2,6 +2,9 @@
 
 var express=require('express');
 var app = express();
+var crud=require('./DAL/model.crud.js');
+var notifications=crud.notifications;
+
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 app.use('/repos',express.static(__dirname + '/lib'));
@@ -30,8 +33,10 @@ users=[
     {name:'Airtel',emailid:'airtel@airtel.com',message:'Ads from Airtel'}];
 
 
-//Displating page
-app.get('/', function(req, res){
+//Inserting into DB
+app.get('/save', function(req, res){
+    
+    
   res.sendFile(__dirname + '/index.html');
 });
 
@@ -39,8 +44,16 @@ app.get('/', function(req, res){
 //Initial Connection
 io.on('connection', function(socket,url){
    
+    var note=new crud.notifications({c_name:'Chinmay',c_domain:'google.com'});
+    note.save(function(err){
+    if(err)
+    {
+    console.log('Error: '+err);
+    }
+    });
+    
     flag=false;
-    console.log("connected to "+socket.id+" with url "+url);
+    console.log("connected to "+socket.id+" with url ");
     
   socket.on('Req', function(data){
       //*Biz logic
@@ -56,9 +69,7 @@ io.on('connection', function(socket,url){
   });
       
       //Authentication Mechanism
-      if(!flag)
-      {
-          
+      if(!flag){
           io.to(socket.id).emit('ErrorRes',getErrorMessage('Authentication failed'));
       }
           
