@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Socket.IO chat</title>
+        <style>
+            * { box-sizing: border-box; }
+            body { font: 13px Helvetica, Arial; }
+            form input { border: 0; padding: 10px; width: 90%; }
+            form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+            #messages { list-style-type: none; margin: 0; padding: 0; }
+            #messages li { padding: 5px 10px; }
+            #messages li:nth-child(odd) { background: #eee; }
+            .verticalLine {
+                border-right: thin dotted black;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="messages"></ul>
+        <nav class="navbar navbar-default">
+
+            <div class="navbar-brand">
+                <strong>Easy Way to Notify</strong>
+                <small>Beta</small>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"> <a href=""> Admin<span class="sr-only">(current)</span></a></li>
+                
+            </ul>
+
+        </nav>
+        
+        <form class="col-md-3 verticalLine" style="margin-left:90px;">
+            <strong >Add/Update Notification</strong>
+            <hr/>
+            <br/>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Client Domain Link">
+        </div><br/>
+
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Campaign Name">
+            
+            </div><br/>
+            
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Campaign Message">
+            </div><br/>
+        
+        <div class="input-group">
+            <input type="number" class="form-control" placeholder="Campaign display time">
+            </div><br/>
+        
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Campaign contact emailid">
+            </div><br/>
+      
+        
+            <div class="input-group">
+                <input type="submit" class="form-control btn btn-primary" placeholder="Save/Update" value="Save/Update" >
+            </div><br/>
+
+        
+        </form>
+        <center>
+        <div class="col-md-5">
+            <form class="col-md-3" > 
+                <input type="text" class="form-control" placeholder="Campaign Message">
+                                <input type="submit" class="form-control btn btn-primary" placeholder="Search" value="Search" >
+            </form>
+            <table class="table table-striped table-bordered table-hover table-condensed" >
+                <thead><th>Campaign Name</th><th>Campaign Message</th><th>Campaign Contact</th><th>Campaign Display Time</th>
+                    <th>Client Domain</th>
+                </thead>
+        <tbody>
+        
+        <tr></tr>
+        
+        </tbody>
+    </table>
+        </div>
+        </center>
+        
+        
+        
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+
+       
+
+
+    </body>
+</html>
