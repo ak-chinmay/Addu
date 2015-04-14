@@ -37,11 +37,10 @@ app.get('/', function(req, res){
 
 
 //Initial Connection
-io.on('connection', function(socket){
-    
+io.on('connection', function(socket,url){
+   
     flag=false;
-    
-    console.log("connected to "+socket.id);
+    console.log("connected to "+socket.id+" with url "+url);
     
   socket.on('Req', function(data){
       //*Biz logic
