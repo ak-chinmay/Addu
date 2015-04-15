@@ -8,6 +8,8 @@ var notifications=crud.notifications;
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 app.use('/repos',express.static(__dirname + '/lib'));
+app.use('/clientUI',express.static(__dirname + '/client'));
+
 
 
 //Send Error message
@@ -20,8 +22,8 @@ message:msg  };
 }else{
 return undefined;
 }
-    
-  
+
+
 }
 
 
@@ -35,15 +37,15 @@ users=[
 
 //Inserting into DB
 app.get('/save', function(req, res){
-    
-    
+
+
   res.sendFile(__dirname + '/index.html');
 });
 
 
 //Initial Connection
 io.on('connection', function(socket,url){
-   
+
     var note=new crud.notifications({c_name:'Chinmay',c_domain:'google.com'});
     note.save(function(err){
     if(err)
@@ -51,33 +53,33 @@ io.on('connection', function(socket,url){
     console.log('Error: '+err);
     }
     });
-    
+
     flag=false;
     console.log("connected to "+socket.id+" with url ");
-    
+
   socket.on('Req', function(data){
       //*Biz logic
       users.forEach(function(u){
 
           if(u.emailid==data.emailid)
           {
- 
+
     io.to(socket.id).emit('Res',u);
               flag=true;
           }
-          
+
   });
-      
+
       //Authentication Mechanism
       if(!flag){
           io.to(socket.id).emit('ErrorRes',getErrorMessage('Authentication failed'));
       }
-          
-          
+
+
 });
-    
-  
-    
+
+
+
 });
 
 http.listen(3000, function(){
