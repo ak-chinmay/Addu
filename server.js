@@ -28,9 +28,9 @@ return undefined;
 
 //List of users
 users=[
-    {name:'Vodafone',emailid:'vodafone@vodafone.com',message:'Ads from Vodafone'},
+    {name:'Vodafone',emailid:'vodafone@vodafone.com',message:'Vodafone test ad Message'},
     {name:'Idea',emailid:'idea@idea.com',message:'Ads from Idea'},
-    {name:'Airtel',emailid:'airtel@airtel.com',message:'Ads from Airtel'}];
+    {name:'Airtel',emailid:'airtel@airtel.com',message:'Airtel test ad Message'}];
 
 
 //Inserting into DB
