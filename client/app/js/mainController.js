@@ -1,15 +1,16 @@
-var app = angular.module('ad_serv', []);
+var app = angular.module('ad-serv', []);
 
 
-app.controller('saveCtrl',['$scope','$http',function($scope,$http){
+
+app.controller('saveCtrl',function($scope,$http){
+    
+    console.log('in ctrl');
 $scope.saveNote={};
-  console.log('Client: '+$scope.saveNote.c_name);
 
-$scope.saveNote.submitForm=function()
-{
+$scope.saveNote.submitForm=function(){
+    
   console.log("--> Submitting form");
        var dataObject = {
-          car  : $scope.myForm.car,
           c_id: 'abc',
           c_name : $scope.saveNote.c_name,
           c_message:  $scope.saveNote.c_message,
@@ -18,7 +19,7 @@ $scope.saveNote.submitForm=function()
           c_domain:$scope.saveNote.c_domain,
           c_active:$scope.saveNote.c_active
        };
-       var saveRequest=$http.post("http://localhost:3000/notify/save", dataObject, {});
+       var saveRequest=$http.post("http://localhost:3001/notify/save", {msg:"hi there"}, {});
        saveRequest.success(function(data,status,header,config){
          console.log(data);
 
@@ -30,4 +31,5 @@ $scope.saveNote.submitForm=function()
 
 
 
-}]);
+});
+
